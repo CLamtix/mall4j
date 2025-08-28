@@ -47,7 +47,9 @@ public class SysMenuController{
 	public ServerResponseEntity<Map<Object, Object>> nav(){
 		List<SysMenu> menuList = sysMenuService.listMenuByUserId(SecurityUtils.getSysUser().getUserId());
 
-		return ServerResponseEntity.success(MapUtil.builder().put("menuList", menuList).put("authorities", SecurityUtils.getSysUser().getAuthorities()).build());
+		return ServerResponseEntity.success(MapUtil.builder()
+				.put("menuList", menuList)
+				.put("authorities", SecurityUtils.getSysUser().getAuthorities()).build());
 	}
 
 	/**

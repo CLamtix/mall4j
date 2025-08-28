@@ -40,6 +40,22 @@
         >
           编辑
         </el-button>
+        <el-button
+          v-if="isAuth('admin:user:update') && scope.row.status === 1"
+          type="danger"
+          @click.stop="changeStatus(scope.row.userId, 0)"
+          round
+        >
+          关小黑屋
+        </el-button>
+        <el-button
+          v-if="isAuth('admin:user:update') && scope.row.status === 0"
+          type="success"
+          @click.stop="changeStatus(scope.row.userId, 1)"
+          round
+        >
+          解除禁用
+        </el-button>
       </template>
     </avue-crud>
 
@@ -116,5 +132,23 @@ const onSearch = (params, done) => {
  */
 const selectionChange = (val) => {
   dataListSelections.value = val
+}
+
+/**
+ * 禁用 / 解除禁用
+ * @param id
+ */
+const changeStatus = (id, status) => {
+  http({
+    url: http.adornUrl('/admin/user/changeStatus'),
+    method: 'post',
+    data: http.adornData({
+      userId: id,
+      status: status
+    })
+  })
+    .then(() => {
+      getDataList()
+    })
 }
 </script>

@@ -430,13 +430,13 @@ const getSoldExcel = () => {
 
   .prod-tit {
     padding: 10px;
-    background: #f8f8f9;
+    background: #c0b2c0;
     border-left: 1px solid #dddee1;
     border-top: 1px solid #dddee1;
     border-right: 1px solid #dddee1;
 
     span {
-      margin-right: 15px;
+      margin-right: 10%;
     }
   }
 

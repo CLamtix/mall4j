@@ -11,6 +11,7 @@
 package com.yami.shop.sys.aspect;
 
 import cn.hutool.core.date.SystemClock;
+import com.alibaba.fastjson.JSON;
 import com.yami.shop.common.util.IpHelper;
 import com.yami.shop.common.util.Json;
 import com.yami.shop.security.admin.util.SecurityUtils;
@@ -44,7 +45,6 @@ public class SysLogAspect {
 		//执行时长(毫秒)
 		long time = SystemClock.now() - beginTime;
 
-
 		SysLog sysLogEntity = new SysLog();
 		if(sysLog != null){
 			//注解上的描述
@@ -70,9 +70,12 @@ public class SysLogAspect {
 
 		sysLogEntity.setTime(time);
 		sysLogEntity.setCreateDate(new Date());
-		//保存系统日志
-		sysLogService.save(sysLogEntity);
-
+		//保存系统日志, 必须catch异常，不能影响正常业务线
+		try {
+			sysLogService.save(sysLogEntity);
+		} catch (Exception e) {
+			logger.error("保存日志异常! sysLogEntity={}", JSON.toJSONString(sysLogEntity), e);
+		}
 
 		return result;
 	}

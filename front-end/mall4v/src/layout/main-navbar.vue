@@ -122,9 +122,9 @@ const updatePasswordHandle = () => {
 .site-navbar {
   display: flex;
   align-items: center;
-  background-color: #ffffff;
+  background-color: rgba(143, 241, 215, 0.82);
   color: #333333;
-  border-bottom: 1px solid #ebedf0;
+  border-bottom: 1px solid #d0a943;
   .site-navbar-header {
     display: flex;
     align-items: center;

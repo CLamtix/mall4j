@@ -72,6 +72,16 @@ public class UserController {
         userService.updateById(user);
         return ServerResponseEntity.success();
     }
+    /**
+     * 修改状态
+     */
+    @PostMapping("/changeStatus")
+    @PreAuthorize("@pms.hasPermission('admin:user:update')")
+    public ServerResponseEntity<Void> updateStatus(@RequestBody User user) {
+        user.setModifyTime(new Date());
+        userService.updateById(user);
+        return ServerResponseEntity.success();
+    }
 
     /**
      * 删除

@@ -213,4 +213,5 @@ function fnAddDynamicMenuRoutes (menuList = [], routes = []) {
   }
   router.addRoute({ path: '/:pathMatch(.*)*', redirect: { name: '404' } })
 }
+
 export default router

@@ -49,7 +49,8 @@ public class SysLogController {
 		IPage<SysLog> sysLogs = sysLogService.page(page,
 				new LambdaQueryWrapper<SysLog>()
 						.like(StrUtil.isNotBlank(sysLog.getUsername()),SysLog::getUsername, sysLog.getUsername())
-						.like(StrUtil.isNotBlank(sysLog.getOperation()), SysLog::getOperation,sysLog.getOperation()));
+						.like(StrUtil.isNotBlank(sysLog.getOperation()), SysLog::getOperation,sysLog.getOperation())
+						.orderByDesc(SysLog::getCreateDate));
 		return ServerResponseEntity.success(sysLogs);
 	}
 	
